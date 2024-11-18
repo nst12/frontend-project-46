@@ -1,10 +1,11 @@
-import {parse} from "./parser.js";
+import { formatDiff, getDiffArray, parse } from './parser.js';
 
 const getDiff = (file1, file2) => {
-  parse(file1);
-  parse(file2);
-}
+  const obj1 = parse(file1);
+  const obj2 = parse(file2);
 
-export {
-  getDiff
-}
+  const diffArray = getDiffArray(obj1, obj2);
+  console.log(formatDiff(diffArray));
+};
+
+export { getDiff };
