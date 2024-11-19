@@ -1,9 +1,24 @@
-import { formatDiff, getDiffArray, parse } from '../src/parser.js';
+import { parse } from '../src/parsers.js';
 import { expect, test } from '@jest/globals';
 import { getFixturePath } from '../__tests-utils__/utils.js';
+import { formatDiff, getDiffArray } from '../src/index.js';
 
 test('parse', () => {
   expect(parse(getFixturePath('file1.json'))).toStrictEqual({
+    host: 'hexlet.io',
+    timeout: 50,
+    proxy: '123.234.53.22',
+    follow: false,
+  });
+
+  expect(parse(getFixturePath('file1.yml'))).toStrictEqual({
+    host: 'hexlet.io',
+    timeout: 50,
+    proxy: '123.234.53.22',
+    follow: false,
+  });
+
+  expect(parse(getFixturePath('file1.yaml'))).toStrictEqual({
     host: 'hexlet.io',
     timeout: 50,
     proxy: '123.234.53.22',

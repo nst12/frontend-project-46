@@ -1,4 +1,4 @@
-import { parse } from '../src/parser.js';
+import { parse } from '../src/parsers.js';
 import { expect, test } from '@jest/globals';
 import { getDiff } from '../src/index.js';
 import { getFixturePath } from '../__tests-utils__/utils.js';
