@@ -5,7 +5,10 @@ const getDiff = (file1, file2) => {
   const obj2 = parse(file2);
 
   const diffArray = getDiffArray(obj1, obj2);
-  console.log(formatDiff(diffArray));
+
+  const result = formatDiff(diffArray);
+  console.log(result);
+  return result;
 };
 
 export { getDiff };

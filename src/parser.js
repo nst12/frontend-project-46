@@ -6,6 +6,8 @@ export const parse = (filepath) => {
   if (extension === 'json') {
     return JSON.parse(text);
   }
+
+  return text;
 };
 
 export const getDiffArray = (obj1, obj2) => {
