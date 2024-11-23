@@ -1,5 +1,5 @@
 import { parse } from './parsers.js';
-import { formatPlain, formatStylish } from './formatters/index.js';
+import { formatJson, formatPlain, formatStylish } from './formatters/index.js';
 
 const isObject = (obj) => obj && typeof obj === 'object' && !Array.isArray(obj);
 
@@ -39,9 +39,9 @@ const getDiff = (file1, file2, format = 'stylish') => {
     result = formatStylish(diffTree);
   } else if (format === 'plain') {
     result = formatPlain(diffTree);
+  } else if (format === 'json') {
+    result = formatJson(diffTree);
   }
-
-  console.log(result);
   return result;
 };
 

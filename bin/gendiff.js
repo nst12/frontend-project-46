@@ -11,7 +11,7 @@ program
   .option('-f, --format [type]', 'output format', 'stylish');
 
 program.arguments('<file1> <file2>').action((file1, file2, options) => {
-  getDiff(file1, file2, options.format);
+  console.log(getDiff(file1, file2, options.format));
 });
 
 program.parse();

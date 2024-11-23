@@ -42,3 +42,11 @@ test('getDiffJsonNestedFormatPlain', () => {
 
   expect(getDiff(file1, file2, 'plain')).toBe(expected);
 });
+
+test('getDiffJsonNestedFormatJson', () => {
+  const file1 = getFixturePath('file1nested.json');
+  const file2 = getFixturePath('file2nested.json');
+  const expected = parse(getFixturePath('formatResultNestedJson.txt'));
+
+  expect(getDiff(file1, file2, 'json')).toBe(expected);
+});
