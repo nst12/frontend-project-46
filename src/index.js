@@ -1,4 +1,5 @@
 import { parse } from './parsers.js';
+import { formatPlain, formatStylish } from './formatters/index.js';
 
 const isObject = (obj) => obj && typeof obj === 'object' && !Array.isArray(obj);
 
@@ -26,64 +27,18 @@ export const getDiffTree = (obj1 = {}, obj2 = {}) => {
   }, {});
 };
 
-const formatValue = (value, depth) => {
-  const indentSize = 4;
-  const currentIndent = ' '.repeat(depth * indentSize);
-  const bracketIndent = ' '.repeat((depth - 1) * indentSize);
-
-  if (typeof value !== 'object' || value === null) {
-    // Примитивное значение, возвращаем как есть
-    return `${value}`;
-  } else {
-    // Это объект, рекурсивно форматируем его
-    const entries = Object.entries(value).map(
-      ([key, val]) => `${currentIndent}${key}: ${formatValue(val, depth + 1)}`,
-    );
-    return `{\n${entries.join('\n')}\n${bracketIndent}}`;
-  }
-};
-
-export const formatDiff = (diffTree, depth = 1) => {
-  const indentSize = 4;
-  const currentIndent = ' '.repeat(depth * indentSize - 2);
-
-  const formatted = Object.entries(diffTree).map(([key, node]) => {
-    const { type } = node;
-
-    switch (type) {
-      case 'nested':
-        return `${currentIndent}  ${key}: {\n${formatDiff(node.children, depth + 1)}\n${currentIndent}  }`;
-
-      case 'added':
-        return `${currentIndent}+ ${key}: ${formatValue(node.value, depth + 1)}`;
-
-      case 'removed':
-        return `${currentIndent}- ${key}: ${formatValue(node.value, depth + 1)}`;
-
-      case 'changed':
-        return `${currentIndent}- ${key}: ${formatValue(node.oldValue, depth + 1)}\n${currentIndent}+ ${key}: ${formatValue(node.newValue, depth + 1)}`;
-
-      case 'unchanged':
-        return `${currentIndent}  ${key}: ${formatValue(node.value, depth + 1)}`;
-
-      default:
-        return '';
-    }
-  });
-
-  return depth === 1 ? `{\n${formatted.join('\n')}\n}` : formatted.join('\n');
-};
-
 const getDiff = (file1, file2, format = 'stylish') => {
   const obj1 = parse(file1);
   const obj2 = parse(file2);
 
-  const diffArray = getDiffTree(obj1, obj2);
+  const diffTree = getDiffTree(obj1, obj2);
 
   let result = '';
 
   if (format === 'stylish') {
-    result = formatDiff(diffArray);
+    result = formatStylish(diffTree);
+  } else if (format === 'plain') {
+    result = formatPlain(diffTree);
   }
 
   console.log(result);

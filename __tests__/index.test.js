@@ -34,3 +34,11 @@ test('getDiffYamlNested', () => {
 
   expect(getDiff(file1, file2)).toBe(expected);
 });
+
+test('getDiffJsonNestedFormatPlain', () => {
+  const file1 = getFixturePath('file1nested.json');
+  const file2 = getFixturePath('file2nested.json');
+  const expected = parse(getFixturePath('formatResultNestedPlain.txt'));
+
+  expect(getDiff(file1, file2, 'plain')).toBe(expected);
+});

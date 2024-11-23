@@ -1,7 +1,8 @@
 import { parse } from '../src/parsers.js';
 import { expect, test } from '@jest/globals';
 import { getFixturePath } from '../__tests-utils__/utils.js';
-import { formatDiff, getDiffTree } from '../src/index.js';
+import { getDiffTree } from '../src/index.js';
+import { formatStylish } from '../src/formatters/index.js';
 
 test('parse', () => {
   expect(parse(getFixturePath('file1.json'))).toStrictEqual({
@@ -174,7 +175,7 @@ test('format', () => {
   const expected = parse(getFixturePath('formatResult.txt'));
 
   expect(
-    formatDiff({
+    formatStylish({
       follow: {
         type: 'removed',
         value: false,
