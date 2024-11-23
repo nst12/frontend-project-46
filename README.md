@@ -14,6 +14,7 @@ The Difference Calculator is a program that determines the difference between tw
 - **Report Generation in Various Formats:** Plain text, stylish, and JSON
 
 ## Usage Example
+
 [demo](https://asciinema.org/a/NlYPMGGNQJHuAkRfSBiC1WeSH)
 
 ### Plain Format

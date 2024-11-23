@@ -33,16 +33,13 @@ const getDiff = (file1, file2, format = 'stylish') => {
 
   const diffTree = getDiffTree(obj1, obj2);
 
-  let result = '';
-
   if (format === 'stylish') {
-    result = formatStylish(diffTree);
+    return formatStylish(diffTree);
   } else if (format === 'plain') {
-    result = formatPlain(diffTree);
+    return formatPlain(diffTree);
   } else if (format === 'json') {
-    result = formatJson(diffTree);
+    return formatJson(diffTree);
   }
-  return result;
 };
 
 export { getDiff };
