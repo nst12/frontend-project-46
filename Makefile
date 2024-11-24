@@ -11,7 +11,7 @@ lint:
 	npx eslint src
 
 test:
-	npx jest __tests__
+	npm test
 
 test-coverage:
-	npx jest __tests__ --coverage
+	npm test -- --coverage --coverageProvider=v8
