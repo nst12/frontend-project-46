@@ -8,7 +8,7 @@ const formatValuePlain = (value) => {
   return `${value}`;
 };
 
-export const formatPlain = (diffTree, parentPath = '') => {
+const formatPlain = (diffTree, parentPath = '') => {
   const lines = Object.entries(diffTree).flatMap(([key, node]) => {
     const propertyPath = parentPath ? `${parentPath}.${key}` : key;
     const { type } = node;
@@ -36,3 +36,5 @@ export const formatPlain = (diffTree, parentPath = '') => {
 
   return lines.join('\n');
 };
+
+export default formatPlain;

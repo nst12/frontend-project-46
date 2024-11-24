@@ -6,25 +6,34 @@ const isObject = (obj) => obj && typeof obj === 'object' && !Array.isArray(obj);
 export const getDiffTree = (obj1 = {}, obj2 = {}) => {
   const keys = [
     ...new Set([...Object.keys(obj1), ...Object.keys(obj2)]),
-  ].toSorted();
+  ].sort();
 
-  return keys.reduce((acc, key) => {
-    if (isObject(obj1[key]) && isObject(obj2[key])) {
-      acc[key] = {
-        type: 'nested',
-        children: getDiffTree(obj1[key], obj2[key]),
-      };
-    } else if (!(key in obj2)) {
-      acc[key] = { type: 'removed', value: obj1[key] };
-    } else if (!(key in obj1)) {
-      acc[key] = { type: 'added', value: obj2[key] };
-    } else if (obj1[key] !== obj2[key]) {
-      acc[key] = { type: 'changed', oldValue: obj1[key], newValue: obj2[key] };
-    } else {
-      acc[key] = { type: 'unchanged', value: obj1[key] };
-    }
-    return acc;
-  }, {});
+  return Object.fromEntries(
+    keys.map((key) => {
+      if (isObject(obj1[key]) && isObject(obj2[key])) {
+        return [
+          key,
+          {
+            type: 'nested',
+            children: getDiffTree(obj1[key], obj2[key]),
+          },
+        ];
+      }
+      if (!(key in obj2)) {
+        return [key, { type: 'removed', value: obj1[key] }];
+      }
+      if (!(key in obj1)) {
+        return [key, { type: 'added', value: obj2[key] }];
+      }
+      if (obj1[key] !== obj2[key]) {
+        return [
+          key,
+          { type: 'changed', oldValue: obj1[key], newValue: obj2[key] },
+        ];
+      }
+      return [key, { type: 'unchanged', value: obj1[key] }];
+    }),
+  );
 };
 
 const getDiff = (file1, file2, format = 'stylish') => {

@@ -4,19 +4,16 @@ const formatValueStylish = (value, depth) => {
   const bracketIndent = ' '.repeat((depth - 1) * indentSize);
 
   if (typeof value !== 'object' || value === null) {
-    // Примитивное значение, возвращаем как есть
     return `${value}`;
-  } else {
-    // Это объект, рекурсивно форматируем его
-    const entries = Object.entries(value).map(
-      ([key, val]) =>
-        `${currentIndent}${key}: ${formatValueStylish(val, depth + 1)}`,
-    );
-    return `{\n${entries.join('\n')}\n${bracketIndent}}`;
   }
+
+  const entries = Object.entries(value).map(([key, val]) => {
+    return `${currentIndent}${key}: ${formatValueStylish(val, depth + 1)}`;
+  });
+  return `{\n${entries.join('\n')}\n${bracketIndent}}`;
 };
 
-export const formatStylish = (diffTree, depth = 1) => {
+const formatStylish = (diffTree, depth = 1) => {
   const indentSize = 4;
   const currentIndent = ' '.repeat(depth * indentSize - 2);
 
@@ -46,3 +43,5 @@ export const formatStylish = (diffTree, depth = 1) => {
 
   return depth === 1 ? `{\n${formatted.join('\n')}\n}` : formatted.join('\n');
 };
+
+export default formatStylish;
