@@ -1,11 +1,11 @@
 import parse from './parsers.js';
 import { formatJson, formatPlain, formatStylish } from './formatters/index.js';
+import _ from 'lodash'
 
 const isObject = (obj) => obj && typeof obj === 'object' && !Array.isArray(obj);
 
 export const getDiffTree = (obj1 = {}, obj2 = {}) => {
-  /* eslint-disable fp/no-mutating-methods */
-  const keys = [...new Set([...Object.keys(obj1), ...Object.keys(obj2)])].sort();
+  const keys = _.sortBy([...new Set([...Object.keys(obj1), ...Object.keys(obj2)])]);
 
   return Object.fromEntries(
     keys.map((key) => {
