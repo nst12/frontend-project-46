@@ -1,6 +1,6 @@
 import { parse } from '../src/parsers.js';
 import { expect, test } from '@jest/globals';
-import { getDiff } from '../src/index.js';
+import getDiff from '../src/index.js';
 import { getFixturePath } from '../__tests-utils__/utils.js';
 
 const getGenDiffFixture = (filePath1, filePath2, expectedFilePath) => {

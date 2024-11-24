@@ -42,4 +42,4 @@ const getDiff = (file1, file2, format = 'stylish') => {
   }
 };
 
-export { getDiff };
+export default getDiff;
