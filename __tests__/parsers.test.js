@@ -4,6 +4,30 @@ import { getFixturePath } from '../__tests-utils__/utils.js';
 import { getDiffTree } from '../src/index.js';
 import { formatStylish } from '../src/formatters/index.js';
 
+const flatObject = {
+  follow: {
+    type: 'removed',
+    value: false,
+  },
+  host: {
+    type: 'unchanged',
+    value: 'hexlet.io',
+  },
+  proxy: {
+    type: 'removed',
+    value: '123.234.53.22',
+  },
+  timeout: {
+    newValue: 20,
+    oldValue: 50,
+    type: 'changed',
+  },
+  verbose: {
+    type: 'added',
+    value: true,
+  },
+};
+
 test('parse', () => {
   expect(parse(getFixturePath('file1.json'))).toStrictEqual({
     host: 'hexlet.io',
@@ -39,31 +63,8 @@ test('getDiffTree', () => {
     verbose: true,
     host: 'hexlet.io',
   };
-  const expected = {
-    follow: {
-      type: 'removed',
-      value: false,
-    },
-    host: {
-      type: 'unchanged',
-      value: 'hexlet.io',
-    },
-    proxy: {
-      type: 'removed',
-      value: '123.234.53.22',
-    },
-    timeout: {
-      newValue: 20,
-      oldValue: 50,
-      type: 'changed',
-    },
-    verbose: {
-      type: 'added',
-      value: true,
-    },
-  };
 
-  expect(getDiffTree(obj1, obj2)).toStrictEqual(expected);
+  expect(getDiffTree(obj1, obj2)).toStrictEqual(flatObject);
 });
 
 test('getDiffArrayNested', () => {
@@ -174,29 +175,5 @@ test('getDiffArrayNested', () => {
 test('format', () => {
   const expected = parse(getFixturePath('formatResult.txt'));
 
-  expect(
-    formatStylish({
-      follow: {
-        type: 'removed',
-        value: false,
-      },
-      host: {
-        type: 'unchanged',
-        value: 'hexlet.io',
-      },
-      proxy: {
-        type: 'removed',
-        value: '123.234.53.22',
-      },
-      timeout: {
-        newValue: 20,
-        oldValue: 50,
-        type: 'changed',
-      },
-      verbose: {
-        type: 'added',
-        value: true,
-      },
-    }),
-  ).toEqual(expected);
+  expect(formatStylish(flatObject)).toEqual(expected);
 });
