@@ -8,6 +8,7 @@ export const getFixturePath = (filename) => path.join('__tests__', '__fixtures__
 
 /* eslint-disable jest/no-export */
 export const runTest = (description, file1, file2, expected, format) => {
+  /* eslint-disable jest/valid-title */
   test(String(description), () => {
     const fixture = {
       filePath1: getFixturePath(file1),
