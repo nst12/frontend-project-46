@@ -6,7 +6,7 @@ const isObject = (obj) => obj && typeof obj === 'object' && !Array.isArray(obj);
 export const getDiffTree = (obj1 = {}, obj2 = {}) => {
   const keys = [
     ...new Set([...Object.keys(obj1), ...Object.keys(obj2)]),
-  ].toSorted();
+  ].sort();
 
   return Object.fromEntries(
     keys.map((key) => {
