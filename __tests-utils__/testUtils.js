@@ -3,8 +3,10 @@ import { expect, test } from '@jest/globals';
 import parse from '../src/parsers.js';
 import getDiff from '../src/index.js';
 
+/* eslint-disable jest/no-export */
 export const getFixturePath = (filename) => path.join('__tests__', '__fixtures__', filename);
 
+/* eslint-disable jest/no-export */
 export const runTest = (description, file1, file2, expected, format) => {
   test(String(description), () => {
     const fixture = {
