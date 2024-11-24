@@ -13,5 +13,5 @@ lint:
 test:
 	npx jest __tests__
 
-coverage:
+test-coverage:
 	npx jest __tests__ --coverage
