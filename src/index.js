@@ -44,9 +44,11 @@ const getDiff = (file1, file2, format = 'stylish') => {
 
   if (format === 'stylish') {
     return formatStylish(diffTree);
-  } else if (format === 'plain') {
+  }
+  if (format === 'plain') {
     return formatPlain(diffTree);
-  } else if (format === 'json') {
+  }
+  if (format === 'json') {
     return formatJson(diffTree);
   }
 

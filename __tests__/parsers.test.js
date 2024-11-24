@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals';
 import parse from '../src/parsers.js';
-import { getFixturePath } from '../test-utils/utils.js';
+import { getFixturePath } from '../__tests-utils__/testUtils.js';
 import { getDiffTree } from '../src/index.js';
 import { formatStylish } from '../src/formatters/index.js';
 

@@ -6,7 +6,7 @@ import getDiff from '../src/index.js';
 export const getFixturePath = (filename) => path.join('__tests__', '__fixtures__', filename);
 
 export const runTest = (description, file1, file2, expected, format) => {
-  test(description.toString(), () => {
+  test(String(description), () => {
     const fixture = {
       filePath1: getFixturePath(file1),
       filePath2: getFixturePath(file2),
