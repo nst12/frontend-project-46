@@ -1,6 +1,7 @@
+import _ from 'lodash';
 import parse from './parsers.js';
 import { formatJson, formatPlain, formatStylish } from './formatters/index.js';
-import _ from 'lodash'
+
 
 const isObject = (obj) => obj && typeof obj === 'object' && !Array.isArray(obj);
 
