@@ -7,9 +7,7 @@ const formatValueStylish = (value, depth) => {
     return `${value}`;
   }
 
-  const entries = Object.entries(value).map(([key, val]) => {
-    return `${currentIndent}${key}: ${formatValueStylish(val, depth + 1)}`;
-  });
+  const entries = Object.entries(value).map(([key, val]) => `${currentIndent}${key}: ${formatValueStylish(val, depth + 1)}`);
   return `{\n${entries.join('\n')}\n${bracketIndent}}`;
 };
 

@@ -1,4 +1,4 @@
-import { runTest } from '../__tests-utils__/utils.js';
+import { runTest } from '../test-utils/utils.js';
 
 runTest('getDiffJson', 'file1.json', 'file2.json', 'formatResult.txt');
 runTest('getDiffYaml', 'file1.yml', 'file2.yml', 'formatResult.txt');
