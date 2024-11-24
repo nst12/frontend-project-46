@@ -2,7 +2,6 @@ import _ from 'lodash';
 import parse from './parsers.js';
 import { formatJson, formatPlain, formatStylish } from './formatters/index.js';
 
-
 const isObject = (obj) => obj && typeof obj === 'object' && !Array.isArray(obj);
 
 export const getDiffTree = (obj1 = {}, obj2 = {}) => {
