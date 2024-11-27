@@ -1,6 +1,6 @@
 import parse from './parsers.js';
 import { formatJson, formatPlain, formatStylish } from './formatters/index.js';
-import makeAstTree from "./makeAstTree.js";
+import makeAstTree from './makeAstTree.js';
 
 const getDiff = (file1, file2, format = 'stylish') => {
   const obj1 = parse(file1);

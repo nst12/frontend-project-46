@@ -1,9 +1,9 @@
-import fs from "fs";
+import fs from 'fs';
 import { expect, test } from '@jest/globals';
 import parse from '../src/parsers.js';
 import { getFixturePath } from '../__tests-utils__/testUtils.js';
 import { formatStylish } from '../src/formatters/index.js';
-import makeAstTree from "../src/makeAstTree.js";
+import makeAstTree from '../src/makeAstTree.js';
 
 const flatObject = {
   follow: {

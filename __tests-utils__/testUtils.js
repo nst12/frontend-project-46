@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from 'fs';
 import path from 'node:path';
 import { expect, test } from '@jest/globals';
 import getDiff from '../src/index.js';
