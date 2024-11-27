@@ -13,6 +13,16 @@ The Difference Calculator is a program that determines the difference between tw
 - **Supports Different Input Formats:** YAML, JSON
 - **Report Generation in Various Formats:** Plain text, stylish, and JSON
 
+## Setup
+
+### Download
+[Link](https://github.com/nst12/frontend-project-46/archive/refs/heads/main.zip)
+
+### Install
+```shell
+make install
+```
+
 ## Usage Example
 
 [demo](https://asciinema.org/a/NlYPMGGNQJHuAkRfSBiC1WeSH)

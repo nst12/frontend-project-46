@@ -1,8 +1,9 @@
+import fs from "fs";
 import { expect, test } from '@jest/globals';
 import parse from '../src/parsers.js';
 import { getFixturePath } from '../__tests-utils__/testUtils.js';
-import { getDiffTree } from '../src/index.js';
 import { formatStylish } from '../src/formatters/index.js';
+import makeAstTree from "../src/makeAstTree.js";
 
 const flatObject = {
   follow: {
@@ -51,7 +52,7 @@ test('parse', () => {
   });
 });
 
-test('getDiffTree', () => {
+test('makeAstTree', () => {
   const obj1 = {
     host: 'hexlet.io',
     timeout: 50,
@@ -64,7 +65,7 @@ test('getDiffTree', () => {
     host: 'hexlet.io',
   };
 
-  expect(getDiffTree(obj1, obj2)).toStrictEqual(flatObject);
+  expect(makeAstTree(obj1, obj2)).toStrictEqual(flatObject);
 });
 
 test('getDiffArrayNested', () => {
@@ -169,11 +170,11 @@ test('getDiffArrayNested', () => {
       },
     },
   };
-  expect(getDiffTree(obj1, obj2)).toStrictEqual(expected);
+  expect(makeAstTree(obj1, obj2)).toStrictEqual(expected);
 });
 
 test('format', () => {
-  const expected = parse(getFixturePath('formatResult.txt'));
+  const expected = fs.readFileSync(getFixturePath('formatResult.txt'), 'utf8');
 
   expect(formatStylish(flatObject)).toEqual(expected);
 });

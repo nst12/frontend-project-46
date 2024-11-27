@@ -1,6 +1,6 @@
+import fs from "fs";
 import path from 'node:path';
 import { expect, test } from '@jest/globals';
-import parse from '../src/parsers.js';
 import getDiff from '../src/index.js';
 
 /* eslint-disable jest/no-export */
@@ -13,7 +13,7 @@ export const runTest = (description, file1, file2, expected, format) => {
     const fixture = {
       filePath1: getFixturePath(file1),
       filePath2: getFixturePath(file2),
-      expected: parse(getFixturePath(expected)),
+      expected: fs.readFileSync(getFixturePath(expected), 'utf8'),
     };
     expect(getDiff(fixture.filePath1, fixture.filePath2, format)).toBe(
       fixture.expected,
